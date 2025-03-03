@@ -1,4 +1,4 @@
-import { CfnOutput, Duration, Stack, StackProps } from 'aws-cdk-lib';
+import { CfnOutput, Duration, RemovalPolicy, Stack, StackProps } from 'aws-cdk-lib';
 import { AutoScalingGroup } from 'aws-cdk-lib/aws-autoscaling';
 import {
   SecurityGroup,
@@ -104,6 +104,7 @@ export class ECSResources extends Construct {
       launchTemplate: launchTemplate,
       minCapacity: 1,
       maxCapacity: 1,
+      newInstancesProtectedFromScaleIn: false,
     });
 
     autoScalingGroup.role.addManagedPolicy(
